@@ -1,20 +1,50 @@
-# Santander Bootcamp
+# Santander Bootcamp — Cibersegurança do Zero à Prática
 
-Este repositório terá como objetivo documentar e servir como entrega para o desafio do quarto módulo do bootcamp "Cybersegurança do Zero à prática" do Santander em parceria com a DIO.
+## Sobre o projeto
 
-Para entrega do desafio, foi informado que é **flexível**, sendo o principal a demonstração do entendimento adquirido com o módulo. 
+Este repositório tem como objetivo documentar e apresentar a entrega do desafio do quarto módulo do bootcamp **Cibersegurança do Zero à Prática**, realizado pelo Santander em parceria com a DIO.
 
-Para execução, será utilizado 2 máquinas virtuais (VMs):
-- **Kali**: Máquina virtual contendo a imagem prémontada do Kali Linux. Será o ambiente de análise e execução dos ataques simulados.
-- **Metasploit2**: Máquina virtual contendo a imagem de Metasploit2, uma distribuição Linux com vulnerabilidades propositais para fins de estudo e prática.
+Conforme as orientações do desafio, a entrega é flexível, tendo como principal objetivo demonstrar o entendimento dos conceitos abordados durante o módulo.
 
-Os ataques simulados serão divididos em 3 momentos:
-1. Coleta de informações;
-2. Interpretação das informações coletadas;
-3. Execução do ataque simulado.
+## Ambiente de laboratório
 
-<p>No primeiro momento, será apenas analisado quais são as formas de estarmos obtendo as informações de um sistema e por quais estamos buscando, sem levar em consideração as características específicas das mesmas. No segundo momento, será feita a análise dessas informações: quais são relevantes e porque, o que essas informações conseguem nos dizer e como podemos estar possívelmente utilizando-as. Por fim, será planejado o ataque com um foco específico, utilizando de ferramentas do próprio sistema operacional Kali, como Medusa e John, ou ferramentas externas, como Nmap, e então sugerida medidas de mitigação para o ambiente.
+Para a realização das atividades, serão utilizadas duas máquinas virtuais (VMs):
 
----
+- **Kali Linux:** ambiente utilizado para análise, reconhecimento e execução dos testes de segurança.
+- **Metasploitable 2:** máquina virtual baseada em Linux, desenvolvida intencionalmente com vulnerabilidades para fins educacionais e para a prática de testes de segurança.
 
+Os testes serão realizados em um ambiente de laboratório controlado, com o objetivo de estudar técnicas de reconhecimento, análise de informações e exploração de vulnerabilidades.
 
+## Etapas do projeto
+
+As atividades serão divididas em três etapas principais:
+
+### 1. Coleta de informações
+
+Nesta etapa, serão estudadas as diferentes formas de obter informações sobre um sistema, considerando os métodos e as ferramentas disponíveis, bem como os tipos de dados que podem ser coletados.
+
+O objetivo é compreender como o reconhecimento contribui para a identificação de serviços, características do ambiente e possíveis pontos de exposição.
+
+### 2. Análise e interpretação das informações
+
+As informações coletadas serão analisadas para identificar quais são relevantes para o contexto do laboratório e o que elas podem revelar sobre a superfície de ataque do sistema.
+
+Também será avaliado como esses dados podem orientar as próximas etapas dos testes, considerando os riscos identificados e as limitações das informações disponíveis.
+
+### 3. Testes de segurança e medidas de mitigação
+
+Com base nas informações analisadas, será definido um cenário de teste com um objetivo específico.
+
+Serão utilizadas ferramentas de segurança disponíveis no ambiente Kali Linux, como Medusa e John the Ripper, além de ferramentas de reconhecimento e análise, como Nmap, conforme a necessidade e o escopo do laboratório.
+
+Ao final, serão documentados os resultados observados e propostas medidas de mitigação adequadas aos riscos identificados.
+
+## Resultados e aprendizados
+
+Esta seção será preenchida ao longo do desenvolvimento do projeto, registrando as evidências obtidas, os resultados dos testes, as dificuldades encontradas e os principais aprendizados.
+
+## Escopo e segurança
+
+Todas as atividades práticas serão realizadas exclusivamente no ambiente de laboratório autorizado, utilizando as máquinas virtuais destinadas ao estudo.
+
+O objetivo é compreender tanto as técnicas utilizadas nos testes de segurança quanto as medidas defensivas que podem reduzir os riscos identificados.
