@@ -1,1 +1,16 @@
-# Wordlists
+Passwords
+
+123456
+password
+qwerty
+msfadmin
+Welcome123
+
+-------------------------
+
+Users
+
+user
+msfadmin
+admin
+root
