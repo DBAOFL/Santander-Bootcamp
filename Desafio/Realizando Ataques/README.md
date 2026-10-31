@@ -21,6 +21,7 @@ No terminal, encontramos nosso endereço IP e, consequentemente, a rede em que o
 ```bash
 nmap -v -sn [IP DA REDE]/[PREFIXO]
 ```
+![](Desafio/images/nmapDiscovery.png)
 
 Para verificar quais hosts estão online na rede.
 
@@ -29,6 +30,7 @@ Com os hosts descobertos, usamos:
 ```bash
 nmap -v -sV [IP DO ALVO]/[PREFIXO]
 ```
+![](Desafio/images/portScan.png)
 
 Para descobrir mais informações sobre as portas de serviço. Para sermos mais pontuais, vamos verificar portas específicas: `21, 22, 80, 139, 445`. O comando fica:
 
@@ -69,6 +71,7 @@ medusa -h [IP DO ALVO] -U [caminho do arquivo de usuários] -P [caminho do arqui
   -m FORM:'username=^USER^&password=^PASS^&Login=Login' \
   -m 'FAIL=Login failed'
 ```
+![](Desafio/images/dvwaAccess.png)
 
 Com isso, descobrimos o usuário e a senha corretos ao vermos a saída com a flag `SUCCESS`.
 
@@ -79,6 +82,10 @@ Com o comando:
 ```bash
 enum4linux -a [IP DO ALVO] | tee enum4_output.txt | grep -oP 'user:\[\K[^]]+' > enum4_users.txt
 ```
+
+![](/Desafio/images/smbDiscovery.png)
+
+![](/Desafio/images/smbAttack.png)
 
 realizamos uma enumeração completa do host-alvo (via RID cycling), salvando o output bruto em `enum4_output.txt` para análise posterior e, ao mesmo tempo, extraindo apenas os nomes de usuário encontrados para `enum4_users.txt`.
 
