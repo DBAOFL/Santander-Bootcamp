@@ -86,7 +86,7 @@ realizamos uma enumeração completa do host-alvo (via RID cycling), salvando o 
 
 Diferente do brute force usado no FTP e no DVWA, aqui aplicamos **password spraying**: em vez de testar muitas senhas contra um único usuário (o que gera bloqueio de conta em ambientes com política de lockout), testamos poucas senhas — geralmente 1 ou 2, como `msfadmin` e outras senhas padrão comuns — contra a lista real de usuários obtida na enumeração. Isso simula um cenário mais realista de ataque, que tenta evitar detecção por tentativas repetidas no mesmo usuário.
 
-O arquivo `senhas_spray.txt` usado aqui contém **[preencher: quantidade] senha(s)** — é esse tamanho reduzido que caracteriza o ataque como spraying, e não brute force disfarçado.
+O arquivo `senhas_spray.txt` usado aqui contém **4** senhas — é esse tamanho reduzido que caracteriza o ataque como spraying, e não brute force disfarçado.
 
 ```bash
 medusa -h [IP DO ALVO] -U enum4_users.txt -P senhas_spray.txt -M smbnt | grep FOUND
