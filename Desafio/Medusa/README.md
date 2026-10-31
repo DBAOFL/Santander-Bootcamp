@@ -3,7 +3,7 @@
 Medusa é uma aplicação pré-instalada no Kali Linux que tem o foco de realizar ataques de força bruta contra um host.
 
 Segue a baixo o manual oficial de Medusa:\\
-`Syntax: Medusa [-h host|-H file] [-u username|-U file] [-p password|-P file] [-C file] -M module [OPT]\
+```Syntax: Medusa [-h host|-H file] [-u username|-U file] [-p password|-P file] [-C file] -M module [OPT]\
   -h [TEXT]    : Target hostname or IP address\
   -H [FILE]    : File containing target hostnames or IP addresses\
   -u [TEXT]    : Username to test\
@@ -35,4 +35,4 @@ Segue a baixo o manual oficial de Medusa:\\
   -v [NUM]     : Verbose level [0 - 6 (more)]\
   -w [NUM]     : Error debug level [0 - 10 (more)]\
   -V           : Display version\
-  -Z [TEXT]    : Resume scan based on map of previous scan`
+  -Z [TEXT]    : Resume scan based on map of previous scan```
