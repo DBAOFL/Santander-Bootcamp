@@ -1,0 +1,16 @@
+Nmap scan report for 192.168.56.1
+Host is up (0.00062s latency).
+MAC Address: 0A:00:27:00:00:00 (Unknown)
+--
+Nmap scan report for 192.168.56.100
+Host is up (0.0018s latency).
+MAC Address: 08:00:27:80:A8:22 (Oracle VirtualBox virtual NIC)
+Nmap scan report for 192.168.56.101
+Host is up (0.0016s latency).
+MAC Address: 08:00:27:EE:44:28 (Oracle VirtualBox virtual NIC)
+--
+Nmap scan report for 192.168.56.102
+Host is up.
+Read data files from: /usr/share/nmap
+Nmap done: 256 IP addresses (4 hosts up) scanned in 1.80 seconds
+           Raw packets sent: 511 (14.308KB) | Rcvd: 7 (196B)
