@@ -12,6 +12,7 @@ Uma vez com os arquivos baixados, basta configurar as VMs da forma instruída no
 
 - Kali: Importa-se diretamente do arquivo baixado, com as configurações prontas. Caso desejar, trocar o nome da VM.
 - Metasploitable2: "Novo" -> OS = Linux | OS Distribution = Ubuntu -> "Especificar espaço de armazenamento virtual" = ✓ "Utilizar um disco rígido virtual existente" -> Selecionar o arquivo dentro do diretório descompactado do Metasploitable2 -> "Finalizar"
+- Em cada VM, Configurações → Rede → “Adaptador 1” → Conectado a: Adaptador Host-only
 
 Os usuários e senhas, respectivamente, padrão para acessar cada uma são:
 - Kali: kali & kali
