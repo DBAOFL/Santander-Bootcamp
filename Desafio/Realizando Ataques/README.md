@@ -55,6 +55,8 @@ Em seguida, executamos:
 medusa -h [IP DO ALVO]/[PREFIXO] -U [caminho do arquivo de usuários] -P [caminho do arquivo de senhas] -M ftp
 ```
 
+![](/Desafio/images/ftpFound.png)
+
 O Medusa retornará todas as tentativas com as combinações possíveis de usuário e senha. Caso alguma seja bem-sucedida, aparecerá `[SUCCESS]`, e poderemos usar essas credenciais para acessar o serviço.
 
 ## DVWA
