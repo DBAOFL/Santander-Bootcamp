@@ -14,12 +14,12 @@ O código deve comunicar claramente sua finalidade.
 
 Priorize:
 
-    Nomes significativos.
-    Estruturas simples.
-    Funções pequenas e coesas.
-    Organização consistente.
-    Poucas dependências desnecessárias.
-    Tratamento explícito de erros.
+    - Nomes significativos.
+    - Estruturas simples.
+    - Funções pequenas e coesas.
+    - Organização consistente.
+    - Poucas dependências desnecessárias.
+    - Tratamento explícito de erros.
 
 Evite otimizar a quantidade de linhas em detrimento da compreensão.
 
@@ -45,11 +45,11 @@ total_price = product_price * quantity
 
 Evite:
 
-    Abreviações sem significado.
-    Nomes genéricos.
-    Nomes enganosos.
-    Siglas desnecessárias.
-    Nomes que escondam efeitos colaterais.
+    - Abreviações sem significado.
+    - Nomes genéricos.
+    - Nomes enganosos.
+    - Siglas desnecessárias.
+    - Nomes que escondam efeitos colaterais.
 
 Respeite as convenções da linguagem.
 
@@ -59,12 +59,12 @@ Uma função deve representar uma responsabilidade clara.
 
 Boas práticas:
 
-    Manter funções focadas.
-    Reduzir parâmetros desnecessários.
-    Evitar efeitos colaterais inesperados.
-    Utilizar nomes que descrevam ações.
-    Evitar funções excessivamente longas.
-    Separar responsabilidades diferentes.
+    - Manter funções focadas.
+    - Reduzir parâmetros desnecessários.
+    - Evitar efeitos colaterais inesperados.
+    - Utilizar nomes que descrevam ações.
+    - Evitar funções excessivamente longas.
+    - Separar responsabilidades diferentes.
 
 Exemplo:
 
@@ -104,11 +104,11 @@ Prefira soluções simples e compreensíveis.
 
 Evite:
 
-    Complexidade sem necessidade.
-    Abstrações prematuras.
-    Dependências excessivas.
-    Arquiteturas desproporcionais.
-    Otimizações sem evidências.
+    - Complexidade sem necessidade.
+    - Abstrações prematuras.
+    - Dependências excessivas.
+    - Arquiteturas desproporcionais.
+    - Otimizações sem evidências.
 
 Simplicidade não significa ignorar requisitos importantes.
 
@@ -126,12 +126,12 @@ Erros devem ser tratados de forma explícita e adequada.
 
 Boas práticas:
 
-    Utilizar exceções apropriadas.
-    Não ignorar erros silenciosamente.
-    Preservar informações úteis para diagnóstico.
-    Evitar expor detalhes internos aos usuários.
-    Registrar erros relevantes.
-    Não utilizar exceções para controlar fluxos normais sem justificativa.
+    - Utilizar exceções apropriadas.
+    - Não ignorar erros silenciosamente.
+    - Preservar informações úteis para diagnóstico.
+    - Evitar expor detalhes internos aos usuários.
+    - Registrar erros relevantes.
+    - Não utilizar exceções para controlar fluxos normais sem justificativa.
 
 ## 10. Comentários e documentação
 
@@ -162,11 +162,11 @@ Organize o código conforme suas responsabilidades.
 
 Considere:
 
-    Separação por módulos.
-    Separação entre regras de negócio e infraestrutura.
-    Organização de configurações.
-    Isolamento de componentes.
-    Estrutura previsível de diretórios.
+    - Separação por módulos.
+    - Separação entre regras de negócio e infraestrutura.
+    - Organização de configurações.
+    - Isolamento de componentes.
+    - Estrutura previsível de diretórios.
 
 Evite criar estruturas excessivamente profundas ou fragmentadas.
 
@@ -176,11 +176,11 @@ Sempre que adequado, prefira operações previsíveis.
 
 Considere:
 
-    Evitar alterações desnecessárias de estado.
-    Limitar efeitos colaterais.
-    Não modificar argumentos inesperadamente.
-    Tornar dependências explícitas.
-    Utilizar estruturas imutáveis quando apropriado.
+    - Evitar alterações desnecessárias de estado.
+    - Limitar efeitos colaterais.
+    - Não modificar argumentos inesperadamente.
+    - Tornar dependências explícitas.
+    - Utilizar estruturas imutáveis quando apropriado.
 
 A imutabilidade pode facilitar testes e reduzir erros.
 
@@ -202,12 +202,12 @@ Refatoração é a melhoria da estrutura interna do código sem alterar seu comp
 
 Exemplos:
 
-    Extrair funções.
-    Renomear variáveis.
-    Eliminar duplicações.
-    Simplificar condições.
-    Separar responsabilidades.
-    Reduzir acoplamento.
+    - Extrair funções.
+    - Renomear variáveis.
+    - Eliminar duplicações.
+    - Simplificar condições.
+    - Separar responsabilidades.
+    - Reduzir acoplamento.
 
 Antes de refatorar:
 
