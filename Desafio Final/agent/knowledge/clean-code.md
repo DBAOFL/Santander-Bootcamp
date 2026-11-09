@@ -2,250 +2,321 @@
 
 ## 1. Objetivo
 
-Este documento reúne princípios para produzir código legível, organizado, compreensível e fácil de manter.
+Este documento apresenta princípios e práticas para escrever código legível, organizado, compreensível e fácil de manter.
 
-Código limpo não significa código excessivamente abstrato ou sofisticado.
+O objetivo é orientar o agente na criação, revisão e refatoração de código, priorizando clareza, simplicidade, qualidade e manutenção.
 
-Significa código cuja intenção pode ser compreendida sem esforço desnecessário.
+Código limpo não significa código curto ou excessivamente abstrato. Significa código que comunica sua intenção e resolve o problema sem complexidade desnecessária.
 
-## 2. Legibilidade
+## 2. Princípios fundamentais
 
-O código deve comunicar claramente sua finalidade.
+Um código de qualidade deve ser:
 
-Priorize:
+- Legível.
+- Simples.
+- Organizado.
+- Consistente.
+- Testável.
+- Reutilizável quando apropriado.
+- Fácil de modificar.
+- Documentado quando necessário.
 
-    - Nomes significativos.
-    - Estruturas simples.
-    - Funções pequenas e coesas.
-    - Organização consistente.
-    - Poucas dependências desnecessárias.
-    - Tratamento explícito de erros.
-
-Evite otimizar a quantidade de linhas em detrimento da compreensão.
+A prioridade deve ser a clareza, não a demonstração de conhecimento técnico.
 
 ## 3. Nomenclatura
 
-Nomes devem representar claramente a responsabilidade de variáveis, funções, classes e módulos.
+Utilize nomes que expressem claramente a finalidade de variáveis, funções, classes e módulos.
 
 Exemplo inadequado:
 
-```python 
-x = 150 
-y = 20 
-z = x * y 
+```python
+x = 10
+y = 5
+z = x * y
 ```
 
 Exemplo melhor:
 
-```python 
-product_price = 150 
-quantity = 20 
-total_price = product_price * quantity 
+```python
+product_price = 10
+quantity = 5
+total_price = product_price * quantity
 ```
 
-Evite:
+Boas práticas:
 
-    - Abreviações sem significado.
-    - Nomes genéricos.
-    - Nomes enganosos.
-    - Siglas desnecessárias.
-    - Nomes que escondam efeitos colaterais.
-
-Respeite as convenções da linguagem.
+- Prefira nomes descritivos.
+- Evite abreviações obscuras.
+- Utilize convenções da linguagem.
+- Mantenha consistência.
+- Evite nomes excessivamente genéricos.
+- Não utilize nomes que induzam a interpretações incorretas.
 
 ## 4. Funções
 
-Uma função deve representar uma responsabilidade clara.
+Funções devem possuir responsabilidades claras.
 
 Boas práticas:
 
-    - Manter funções focadas.
-    - Reduzir parâmetros desnecessários.
-    - Evitar efeitos colaterais inesperados.
-    - Utilizar nomes que descrevam ações.
-    - Evitar funções excessivamente longas.
-    - Separar responsabilidades diferentes.
+- Faça uma função executar uma tarefa bem definida.
+- Evite funções excessivamente longas.
+- Reduza parâmetros quando possível.
+- Evite efeitos colaterais inesperados.
+- Prefira retornos explícitos.
+- Utilize nomes que descrevam ações.
+- Evite níveis excessivos de aninhamento.
 
 Exemplo:
 
-```python 
-def calculate_total(price, quantity): 
-    return price * quantity
+```python
+def calculate_discount(price, discount_percentage):
+    return price * (discount_percentage / 100)
 
-def apply_discount(total, discount): 
-    return total * (1 - discount) 
+
+def calculate_final_price(price, discount_percentage):
+    discount = calculate_discount(price, discount_percentage)
+    return price - discount
 ```
 
-Evite criar funções pequenas artificialmente quando isso prejudicar a compreensão.
+A divisão em funções deve melhorar a compreensão, não criar abstrações desnecessárias.
 
-## 5. Responsabilidade única
+## 5. Princípio DRY
 
-Uma função, classe ou módulo deve possuir uma responsabilidade bem definida.
+DRY significa Don't Repeat Yourself.
 
-O princípio da responsabilidade única não significa que cada função deve realizar apenas uma operação matemática.
+A ideia é evitar duplicação de conhecimento e regras de negócio.
 
-Significa que suas responsabilidades devem permanecer coesas e relacionadas.
+Quando uma mesma regra aparece em diferentes locais, considere centralizá-la.
 
-## 6. DRY — Don't Repeat Yourself
-
-Evite duplicação de lógica.
-
-Quando uma mesma regra aparece em diversos locais, considere centralizá-la.
-
-Entretanto, nem toda repetição deve ser eliminada.
+Entretanto, nem toda repetição de código precisa ser abstraída.
 
 Abstrações prematuras podem aumentar o acoplamento e dificultar a manutenção.
 
-Priorize eliminar duplicações de conhecimento e regras de negócio.
+## 6. Princípio KISS
 
-## 7. KISS — Keep It Simple
+KISS significa Keep It Simple, Stupid.
 
-Prefira soluções simples e compreensíveis.
+Prefira soluções simples que atendam corretamente aos requisitos.
 
 Evite:
+- Arquiteturas excessivamente complexas.
+- Abstrações sem necessidade.
+- Dependências desnecessárias.
+- Condições excessivamente aninhadas.
+- Implementações difíceis de compreender.
 
-    - Complexidade sem necessidade.
-    - Abstrações prematuras.
-    - Dependências excessivas.
-    - Arquiteturas desproporcionais.
-    - Otimizações sem evidências.
+Simplicidade não significa ignorar segurança, qualidade ou requisitos técnicos.
 
-Simplicidade não significa ignorar requisitos importantes.
+## 7. Princípio YAGNI
 
-## 8. YAGNI — You Aren't Gonna Need It
+YAGNI significa You Aren't Gonna Need It.
 
-Não implemente funcionalidades hipotéticas sem necessidade identificada.
+Implemente o que o projeto realmente precisa.
 
-Desenvolva com base nos requisitos atuais e preserve possibilidades razoáveis de evolução.
+Evite:
+- Funcionalidades especulativas.
+- Generalizações prematuras.
+- Sistemas de configuração desnecessários.
+- Complexidade baseada em necessidades hipotéticas.
 
-Evite antecipar complexidade que não possui justificativa.
+Planeje a evolução sem implementar antecipadamente tudo o que poderia ser necessário.
+
+## 8. SOLID
+
+SOLID reúne cinco princípios de orientação a objetos.
+
+### 8.1. Single Responsibility Principle
+
+Uma classe ou módulo deve possuir uma responsabilidade bem definida.
+
+Evite componentes que concentrem regras de negócio, acesso a dados, comunicação externa e apresentação simultaneamente.
+
+### 8.2. Open/Closed Principle
+
+Componentes devem permitir extensão sem exigir modificações constantes em estruturas estáveis.
+
+Utilize abstrações quando houver necessidade real de extensibilidade.
+
+### 8.3. Liskov Substitution Principle
+
+Implementações derivadas devem respeitar os contratos estabelecidos por seus tipos base.
+
+Uma substituição não deve quebrar o comportamento esperado.
+
+### 8.4. Interface Segregation Principle
+
+Prefira interfaces específicas a contratos excessivamente abrangentes.
+
+Componentes não devem depender de operações que não utilizam.
+
+### 8.5. Dependency Inversion Principle
+
+Módulos de alto nível devem depender de abstrações, não diretamente de implementações concretas quando isso trouxer benefícios arquiteturais.
+
+Evite aplicar SOLID mecanicamente em projetos pequenos.
 
 ## 9. Tratamento de erros
 
-Erros devem ser tratados de forma explícita e adequada.
+Erros devem ser tratados de maneira explícita e adequada.
 
 Boas práticas:
 
-    - Utilizar exceções apropriadas.
-    - Não ignorar erros silenciosamente.
-    - Preservar informações úteis para diagnóstico.
-    - Evitar expor detalhes internos aos usuários.
-    - Registrar erros relevantes.
-    - Não utilizar exceções para controlar fluxos normais sem justificativa.
+- Não ignore exceções silenciosamente.
+- Utilize exceções específicas.
+- Não utilize erros para controlar fluxos normais sem necessidade.
+- Registre informações úteis.
+- Evite expor detalhes internos.
+- Preserve informações importantes durante o tratamento.
+
+Exemplo:
+
+```python
+try:
+    result = perform_operation()
+except FileNotFoundError:
+    print("The requested file was not found.")
+except PermissionError:
+    print("Permission denied.")
+```
+
+O tratamento deve corresponder ao contexto da aplicação.
 
 ## 10. Comentários e documentação
 
-Comentários devem explicar decisões, restrições e comportamentos que não sejam evidentes.
+Comentários devem explicar decisões e contextos que não são evidentes pelo código.
 
-Evite comentários que apenas repetem o código.
+Evite comentários que apenas repetem instruções.
 
 Exemplo desnecessário:
 
 ```python
-# Incrementa o contador
-
-counter += 1 
+# Increment the counter
+counter += 1
 ```
 
-Exemplo útil:
+Comentários úteis podem explicar:
 
-```python
-# Mantemos a margem de segurança para evitar arredondamentos que poderiam ultrapassar o limite financeiro permitido.
+- Decisões arquiteturais.
+- Regras de negócio complexas.
+- Limitações técnicas.
+- Comportamentos inesperados.
+- Motivos de uma implementação específica.
 
-```
+Documente APIs públicas e funcionalidades relevantes.
 
-A documentação deve acompanhar o código e permanecer atualizada.
+## 11. Organização do código
 
-## 11. Organização
-
-Organize o código conforme suas responsabilidades.
+Separe responsabilidades em módulos e componentes coerentes.
 
 Considere:
 
-    - Separação por módulos.
-    - Separação entre regras de negócio e infraestrutura.
-    - Organização de configurações.
-    - Isolamento de componentes.
-    - Estrutura previsível de diretórios.
+- Domínios.
+- Funcionalidades.
+- Camadas.
+- Dependências.
+- Responsabilidades.
 
-Evite criar estruturas excessivamente profundas ou fragmentadas.
+Evite:
+- Arquivos excessivamente grandes.
+- Dependências circulares.
+- Acoplamento desnecessário.
+- Código duplicado.
+- Módulos com responsabilidades incompatíveis.
 
-## 12. Imutabilidade e efeitos colaterais
+A estrutura deve acompanhar a complexidade real do sistema.
 
-Sempre que adequado, prefira operações previsíveis.
+## 12. Imutabilidade
 
-Considere:
+Sempre que apropriado, prefira não modificar diretamente estruturas compartilhadas.
 
-    - Evitar alterações desnecessárias de estado.
-    - Limitar efeitos colaterais.
-    - Não modificar argumentos inesperadamente.
-    - Tornar dependências explícitas.
-    - Utilizar estruturas imutáveis quando apropriado.
+Benefícios:
 
-A imutabilidade pode facilitar testes e reduzir erros.
+- Menos efeitos colaterais.
+- Maior previsibilidade.
+- Facilidade de testes.
+- Menor risco de alterações inesperadas.
 
-## 13. Acoplamento e coesão
+A imutabilidade deve ser aplicada considerando as características da linguagem e o desempenho necessário.
 
-### Baixo acoplamento
-
-Componentes devem depender o mínimo possível de detalhes internos de outros componentes.
-
-### Alta coesão
-
-Elementos relacionados devem permanecer organizados juntos.
-
-Esses princípios facilitam manutenção, testes e evolução.
-
-## 14. Refatoração
+## 13. Refatoração
 
 Refatoração é a melhoria da estrutura interna do código sem alterar seu comportamento externo esperado.
 
 Exemplos:
 
-    - Extrair funções.
-    - Renomear variáveis.
-    - Eliminar duplicações.
-    - Simplificar condições.
-    - Separar responsabilidades.
-    - Reduzir acoplamento.
+- Extrair funções.
+- Simplificar condições.
+- Renomear variáveis.
+- Eliminar duplicações.
+- Reduzir acoplamento.
+- Organizar módulos.
 
-Antes de refatorar:
+Boas práticas:
 
-    - Compreenda o comportamento atual.
-    - Identifique os problemas.
-    - Considere testes existentes.
-    - Faça alterações pequenas.
-    - Execute testes de regressão.
+1. Compreenda o comportamento existente.
+2. Identifique o problema.
+3. Garanta a existência de testes adequados.
+4. Faça alterações pequenas.
+5. Execute os testes.
+6. Compare os resultados.
+7. Documente mudanças relevantes.
 
-## 15. Código limpo e desempenho
+Não misture refatorações amplas com alterações funcionais sem necessidade.
 
-Legibilidade e desempenho devem ser equilibrados.
+## 14. Testabilidade
 
-Não realize otimizações prematuras.
+Código deve ser estruturado de maneira que facilite sua validação.
 
-Quando houver problemas de desempenho:
+Considere:
 
-    - Identifique o gargalo.
-    - Colete métricas.
-    - Analise a causa.
-    - Escolha uma otimização adequada.
-    - Compare os resultados.
+- Separação de responsabilidades.
+- Dependências explícitas.
+- Funções previsíveis.
+- Interfaces bem definidas.
+- Isolamento de operações externas.
 
-Não torne o código significativamente mais complexo sem benefício comprovado.
+Evite dependências globais difíceis de substituir durante testes.
+
+## 15. Code Review
+
+Uma revisão de código deve considerar:
+
+- Correção funcional.
+- Legibilidade.
+- Segurança.
+- Desempenho.
+- Manutenção.
+- Testes.
+- Consistência.
+- Compatibilidade.
+
+Aponte problemas concretos e explique suas consequências.
+
+Não solicite mudanças apenas por preferência estilística quando o padrão existente for adequado.
 
 ## 16. Diretrizes para o agente
 
-Ao revisar código:
+Ao escrever ou revisar código:
 
-    - Avalie legibilidade.
-    - Examine nomenclatura.
-    - Identifique duplicações.
-    - Avalie responsabilidades.
-    - Observe complexidade.
-    - Examine tratamento de erros.
-    - Identifique abstrações desnecessárias.
-    - Considere manutenção futura.
+1. Priorize legibilidade.
+2. Utilize nomes descritivos.
+3. Mantenha funções coesas.
+4. Evite duplicação desnecessária.
+5. Aplique SOLID quando apropriado.
+6. Evite complexidade prematura.
+7. Trate erros corretamente.
+8. Documente decisões importantes.
+9. Considere testabilidade.
+10. Preserve o comportamento esperado.
+11. Evite alterações sem justificativa.
+12. Explique melhorias propostas.
 
-Não classifique automaticamente um código como ruim por possuir muitas linhas ou por não utilizar determinado padrão de projeto.
+O agente deve diferenciar problemas reais de qualidade de preferências pessoais de estilo.
 
-Avalie o contexto e justifique as recomendações.
+## 17. Referências
+
+- Clean Code — Robert C. Martin.
+- Refactoring — Martin Fowler.
+- The Pragmatic Programmer — Andrew Hunt e David Thomas.
+- SOLID Principles — https://en.wikipedia.org/wiki/SOLID
+- Google Engineering Practices: https://google.github.io/eng-practices/

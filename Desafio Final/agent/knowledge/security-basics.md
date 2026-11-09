@@ -1,319 +1,466 @@
-# Security Basics — Fundamentos de Cibersegurança
+# Security Basics — Fundamentos de Segurança da Informação
 
 ## 1. Objetivo
 
-Este documento estabelece os fundamentos de segurança da informação que devem orientar as análises, recomendações e decisões do agente.
+Este documento apresenta os fundamentos de segurança da informação, conceitos de vulnerabilidades, ameaças, riscos, impactos e boas práticas.
 
-O objetivo é fornecer uma base conceitual para compreender ameaças, vulnerabilidades, riscos, ataques e mecanismos de proteção.
+O objetivo é orientar o agente na identificação, compreensão e avaliação de problemas de segurança em aplicações, sistemas, redes e infraestrutura.
 
-O agente deve utilizar estes conhecimentos para contextualizar problemas de segurança e explicar suas consequências.
+## 2. Segurança da informação
 
-## 2. Conceitos fundamentais
+Segurança da informação busca proteger dados e sistemas contra acessos, modificações, destruição e indisponibilidade não autorizados.
 
-### 2.1 Ativo
+Seus principais objetivos são representados pela tríade CIA:
 
-Um ativo é qualquer recurso que possua valor para uma organização ou indivíduo.
-
-Exemplos:
-
-- Informações e documentos.
-- Bancos de dados.
-- Aplicações.
-- Servidores.
-- Infraestrutura de rede.
-- Credenciais.
-- Propriedade intelectual.
-- Serviços digitais.
-
-A proteção deve considerar o valor e a importância de cada ativo.
-
-### 2.2 Ameaça
-
-Uma ameaça é uma circunstância, evento ou agente capaz de provocar danos a um ativo.
-
-Exemplos:
-
-- Atacantes externos.
-- Funcionários mal-intencionados.
-- Malware.
-- Engenharia social.
-- Falhas humanas.
-- Desastres naturais.
-- Interrupções de infraestrutura.
-
-Uma ameaça representa uma possibilidade de dano, não necessariamente uma vulnerabilidade existente.
-
-### 2.3 Vulnerabilidade
-
-Uma vulnerabilidade é uma fraqueza em um sistema, processo, aplicação ou configuração que pode ser explorada por uma ameaça.
-
-Exemplos:
-
-- SQL Injection.
-- Cross-Site Scripting (XSS).
-- Senhas fracas.
-- Sistemas desatualizados.
-- Permissões excessivas.
-- Configurações inseguras.
-- Falhas de validação de entrada.
-
-Uma vulnerabilidade pode existir sem que tenha sido explorada.
-
-### 2.4 Exploração
-
-Exploração é o aproveitamento de uma vulnerabilidade para produzir um efeito não autorizado ou indesejado.
-
-A exploração pode resultar em:
-
-- Acesso não autorizado.
-- Exposição de informações.
-- Modificação de dados.
-- Elevação de privilégios.
-- Interrupção de serviços.
-
-A existência de uma vulnerabilidade não significa que sua exploração seja necessariamente simples ou viável.
-
-### 2.5 Risco
-
-Risco é a possibilidade de ocorrência de consequências negativas decorrentes de uma ameaça que possa explorar uma vulnerabilidade.
-
-Sua avaliação deve considerar:
-
-- Probabilidade.
-- Impacto.
-- Exposição.
-- Controles existentes.
-- Contexto do ambiente.
-
-Uma vulnerabilidade não deve ser classificada automaticamente como crítica sem considerar esses fatores.
+- Confidentiality (Confidencialidade).
+- Integrity (Integridade).
+- Availability (Disponibilidade).
 
 ## 3. Tríade CIA
 
-A tríade CIA representa três princípios fundamentais da segurança da informação.
+### 3.1. Confidencialidade
 
-### 3.1 Confidencialidade (Confidentiality)
+Garante que informações sejam acessadas apenas por pessoas ou sistemas autorizados.
 
-Garante que informações sejam acessadas somente por pessoas, sistemas ou processos autorizados.
+Exemplos de controles:
 
-Exemplos de mecanismos:
-
-- Controle de acesso.
 - Criptografia.
+- Controle de acesso.
 - Autenticação.
 - Gerenciamento de permissões.
-- Classificação de informações.
+- Proteção de credenciais.
 
-Uma violação de confidencialidade pode resultar no vazamento de dados pessoais, credenciais ou informações comerciais.
+Exemplo de violação:
 
-### 3.2 Integridade (Integrity)
+Um usuário consegue visualizar dados pessoais de outros usuários sem autorização.
 
-Garante que informações permaneçam corretas, completas e protegidas contra alterações não autorizadas.
+### 3.2. Integridade
 
-Exemplos de mecanismos:
+Garante que informações não sejam modificadas indevidamente.
 
-- Hashes criptográficos.
+Exemplos de controles:
+
+- Hashes.
 - Assinaturas digitais.
 - Controle de alterações.
-- Logs de auditoria.
-- Restrições de escrita.
+- Logs.
 - Validação de dados.
+- Controle de acesso à escrita.
 
-Uma violação de integridade pode provocar alterações indevidas em registros financeiros, configurações ou informações de usuários.
+Exemplo de violação:
 
-### 3.3 Disponibilidade (Availability)
+Um usuário modifica registros financeiros sem possuir autorização.
+
+### 3.3. Disponibilidade
 
 Garante que sistemas e informações estejam acessíveis quando necessários.
 
-Exemplos de mecanismos:
+Exemplos de controles:
 
 - Backups.
 - Redundância.
 - Monitoramento.
 - Balanceamento de carga.
+- Proteção contra DoS.
 - Planos de recuperação.
-- Proteção contra negação de serviço.
 
-Uma violação de disponibilidade pode impedir usuários legítimos de utilizar um sistema.
+Exemplo de violação:
 
-### 3.4 Equilíbrio da tríade
+Um serviço fica indisponível devido a um ataque ou falha de infraestrutura.
 
-Os três princípios devem ser considerados em conjunto.
+## 4. Conceitos fundamentais
 
-Uma solução que prioriza exclusivamente a confidencialidade pode comprometer a disponibilidade se implementar controles excessivamente restritivos.
+### 4.1. Ativo
 
-O agente deve considerar o equilíbrio entre segurança, funcionalidade e necessidades operacionais.
+Qualquer recurso que possua valor para uma organização.
 
-## 4. Autenticidade, autenticação e autorização
+Exemplos:
 
-### Autenticidade
+- Dados.
+- Aplicações.
+- Servidores.
+- Redes.
+- Credenciais.
+- Infraestrutura.
+- Propriedade intelectual.
 
-Propriedade que permite verificar se uma entidade, informação ou comunicação corresponde à origem declarada.
+### 4.2. Ameaça
+
+Qualquer circunstância ou agente capaz de causar danos a um ativo.
+
+Exemplos:
+
+- Atacantes.
+- Malware.
+- Erros humanos.
+- Falhas de hardware.
+- Desastres naturais.
+- Ameaças internas.
+
+### 4.3. Vulnerabilidade
+
+Fraqueza em um sistema, processo, configuração ou controle que pode ser explorada.
+
+Exemplos:
+
+- Software desatualizado.
+- Senhas fracas.
+- SQL Injection.
+- Permissões excessivas.
+- Configurações inseguras.
+- Falta de validação.
+
+### 4.4. Exploração
+
+Aproveitamento de uma vulnerabilidade para produzir um comportamento não autorizado ou prejudicial.
+
+### 4.5. Risco
+
+Representa a possibilidade de um evento de segurança causar determinado impacto.
+
+Uma avaliação simplificada considera:
+
+- Probabilidade.
+- Impacto.
+
+A fórmula Probabilidade × Impacto pode ser utilizada como modelo qualitativo ou quantitativo, desde que os critérios sejam definidos.
+
+### 4.6. Impacto
+
+Consequência potencial de um incidente.
+
+Pode envolver:
+
+- Perda financeira.
+- Exposição de dados.
+- Interrupção de serviços.
+- Danos reputacionais.
+- Consequências legais.
+- Comprometimento de sistemas.
+
+## 5. Avaliação de riscos
+
+A avaliação de riscos deve considerar:
+
+1. Ativos envolvidos.
+2. Ameaças relevantes.
+3. Vulnerabilidades identificadas.
+4. Probabilidade de ocorrência.
+5. Impacto potencial.
+6. Controles existentes.
+7. Risco residual.
+
+### Classificação de severidade
+
+Uma classificação simplificada:
+
+- Crítica: possibilidade de comprometimento grave de ativos ou operações essenciais.
+- Alta: impacto significativo sobre segurança ou funcionamento.
+- Média: impacto moderado e limitado.
+- Baixa: impacto reduzido.
+- Informativa: observação sem risco relevante identificado.
+
+A classificação deve ser justificada por evidências e contexto.
+
+Não classifique automaticamente uma vulnerabilidade como crítica apenas pelo nome da técnica envolvida.
+
+## 6. Vulnerabilidades comuns
+
+### SQL Injection
+
+Ocorre quando entradas não confiáveis interferem na estrutura de consultas SQL.
+
+Prevenção:
+
+- Consultas parametrizadas.
+- Validação de entradas.
+- Menor privilégio.
+- Revisão de consultas.
+
+### Cross-Site Scripting (XSS)
+
+Ocorre quando conteúdo não confiável é interpretado como código executável pelo navegador.
+
+Prevenção:
+
+- Codificação contextual de saída.
+- Sanitização quando apropriada.
+- Content Security Policy.
+- Evitar inserção insegura de HTML.
+
+### Cross-Site Request Forgery (CSRF)
+
+Ocorre quando um navegador autenticado é induzido a realizar ações não desejadas.
+
+Prevenção:
+
+- Tokens CSRF.
+- Cookies SameSite.
+- Verificação de origem.
+- Proteção de operações sensíveis.
+
+### Broken Access Control
+
+Ocorre quando controles de autorização são insuficientes.
+
+Prevenção:
+
+- Verificação de permissões no servidor.
+- Menor privilégio.
+- Controle de acesso por recurso.
+- Testes de autorização.
+
+### Command Injection
+
+Ocorre quando entradas não confiáveis influenciam a execução de comandos do sistema.
+
+Prevenção:
+
+- Evitar execução de comandos externos quando possível.
+- Utilizar APIs específicas.
+- Validar entradas.
+- Separar argumentos de comandos.
+- Aplicar menor privilégio.
+
+### Path Traversal
+
+Ocorre quando entradas permitem acessar arquivos fora do diretório autorizado.
+
+Prevenção:
+
+- Normalização de caminhos.
+- Restrições de diretório.
+- Validação de nomes.
+- Controle de permissões.
+
+### SSRF
+
+Server-Side Request Forgery ocorre quando um sistema é induzido a realizar requisições para destinos não autorizados.
+
+Prevenção:
+
+- Restringir destinos.
+- Validar URLs.
+- Bloquear endereços internos quando não necessários.
+- Controlar redirecionamentos.
+- Aplicar políticas de saída de rede.
+
+## 7. Autenticação e autorização
 
 ### Autenticação
 
-Processo de verificar a identidade de um usuário ou sistema.
+Verifica a identidade de um usuário ou sistema.
 
-Fatores de autenticação:
+Mecanismos:
 
-- Algo que você sabe: senha ou PIN.
-- Algo que você possui: token ou dispositivo.
-- Algo que você é: característica biométrica.
-
-A autenticação multifator combina fatores de categorias diferentes.
+- Senhas.
+- MFA.
+- Certificados.
+- Tokens.
+- Biometria.
 
 ### Autorização
 
-Processo de determinar quais recursos e operações uma identidade autenticada pode utilizar.
+Define o que uma identidade autenticada pode realizar.
 
-Autenticação responde quem é você.
+Modelos:
 
-Autorização responde o que você pode fazer.
+- RBAC.
+- ABAC.
+- ACL.
 
-Um sistema pode autenticar corretamente um usuário e ainda apresentar falhas de autorização.
+Boas práticas:
 
-## 5. Princípios de segurança
+- Menor privilégio.
+- Separação de funções.
+- Revisão periódica de permissões.
+- Revogação de acessos desnecessários.
+- Proteção de sessões.
 
-### Princípio do menor privilégio
+## 8. Criptografia
 
-Cada usuário, processo ou serviço deve possuir somente as permissões necessárias para executar suas funções.
-
-### Defesa em profundidade
-
-Utilizar múltiplas camadas de proteção, evitando depender de um único mecanismo de segurança.
-
-### Segurança por padrão
-
-Configurações iniciais devem priorizar opções seguras.
-
-### Segurança desde o projeto
-
-A segurança deve ser considerada desde as primeiras etapas do desenvolvimento.
-
-### Redução da superfície de ataque
-
-Desabilitar serviços, funcionalidades e acessos desnecessários.
-
-### Fail Secure
-
-Quando ocorre uma falha, o sistema deve evitar conceder acesso indevido.
-
-O comportamento seguro deve ser definido considerando os requisitos de disponibilidade e operação.
-
-## 6. Classificação de informações
-
-Informações podem ser classificadas conforme sua sensibilidade.
-
-Exemplo:
-
-- Pública: pode ser divulgada livremente.
-- Interna: destinada ao uso interno.
-- Confidencial: acesso restrito.
-- Sensível: exige controles reforçados.
-
-A classificação deve orientar armazenamento, compartilhamento, transmissão e descarte.
-
-## 7. Principais categorias de ameaças
-
-### Malware
-
-Software desenvolvido para executar atividades maliciosas.
+Criptografia protege informações por meio de transformações matemáticas.
 
 Categorias:
 
-- Vírus.
-- Worms.
-- Trojans.
-- Ransomware.
-- Spyware.
-- Rootkits.
-- Keyloggers.
+### Criptografia simétrica
 
-### Engenharia social
+Utiliza uma chave compartilhada.
 
-Manipulação de pessoas para obter informações ou induzir ações.
+Exemplo:
 
-Exemplos:
+- AES.
 
-- Phishing.
-- Spear phishing.
-- Pretexting.
-- Baiting.
+### Criptografia assimétrica
 
-### Ataques a aplicações
-
-Exploram falhas no desenvolvimento ou na configuração de aplicações.
+Utiliza pares de chaves.
 
 Exemplos:
 
-- SQL Injection.
-- XSS.
-- CSRF.
-- SSRF.
-- Path Traversal.
-- Broken Access Control.
+- RSA.
+- Ed25519.
+- ECDSA.
 
-### Ataques à disponibilidade
+### Hashing
 
-Procuram comprometer o funcionamento de serviços.
+Transforma dados em representações de tamanho definido.
 
 Exemplos:
 
-- DoS.
-- DDoS.
-- Exaustão de recursos.
+- SHA-256.
+- SHA-3.
 
-## 8. Avaliação de riscos
+Hashing não é equivalente a criptografia reversível.
 
-Uma avaliação de riscos deve considerar pelo menos:
+### Armazenamento de senhas
 
-- Ativo afetado.
-- Ameaça relevante.
-- Vulnerabilidade.
-- Probabilidade.
-- Impacto.
-- Controles existentes.
-- Risco residual.
+Utilize algoritmos específicos para hashing de senhas:
 
-Uma matriz qualitativa pode utilizar:
+- Argon2id.
+- bcrypt.
+- scrypt.
 
-| Probabilidade | Impacto | Prioridade indicativa |
-|---|---|---|
-| Alta | Alto | Crítica |
-| Alta | Médio | Alta |
-| Média | Alto | Alta |
-| Média | Médio | Média |
-| Baixa | Baixo | Baixa |
+Utilize salt adequado e parâmetros atualizados.
 
-Essa matriz é apenas uma referência inicial. A classificação deve considerar o contexto e não substituir uma metodologia formal.
+Nunca armazene senhas em texto puro.
 
-## 9. Referências técnicas
+## 9. Segurança de redes
 
-O agente deve considerar, quando pertinente:
+Conceitos importantes:
 
-- ISO/IEC 27001: Sistema de Gestão de Segurança da Informação.
-- ISO/IEC 27002: Controles de segurança da informação.
-- NIST Cybersecurity Framework.
-- NIST SP 800-53: Controles de segurança e privacidade.
-- OWASP: Segurança de aplicações.
-- MITRE ATT&CK: Táticas e técnicas de adversários.
-- CWE: Classificação de fraquezas de software.
-- CVE: Identificação de vulnerabilidades conhecidas.
-- CVSS: Avaliação da severidade de vulnerabilidades.
+- TCP/IP.
+- DNS.
+- HTTP/HTTPS.
+- TLS.
+- Firewall.
+- VPN.
+- IDS.
+- IPS.
+- Segmentação de rede.
+- Proxy.
 
-## 10. Diretrizes para o agente
+Boas práticas:
 
-Ao analisar um problema:
+- Restringir portas.
+- Minimizar serviços expostos.
+- Utilizar criptografia.
+- Monitorar tráfego.
+- Segmentar ambientes.
+- Atualizar equipamentos.
+- Restringir acesso administrativo.
+
+## 10. Gestão de vulnerabilidades
+
+Um processo de gestão de vulnerabilidades inclui:
+
+1. Identificação de ativos.
+2. Descoberta de vulnerabilidades.
+3. Validação.
+4. Avaliação de impacto.
+5. Priorização.
+6. Correção.
+7. Verificação.
+8. Registro.
+
+Ferramentas comuns:
+
+- OWASP ZAP.
+- Nmap.
+- Trivy.
+- Semgrep.
+- Bandit.
+- Dependabot.
+- OpenVAS.
+
+A utilização deve respeitar autorização e escopo.
+
+## 11. Defesa em profundidade
+
+Defesa em profundidade utiliza múltiplas camadas de proteção.
+
+Exemplos:
+
+- Firewall.
+- Autenticação multifator.
+- Segmentação.
+- Criptografia.
+- Monitoramento.
+- Backups.
+- Controle de acesso.
+- Atualizações.
+- Treinamento.
+
+Uma única medida de segurança não deve ser considerada suficiente para proteger sistemas importantes.
+
+## 12. Princípios de segurança
+
+### Least Privilege
+
+Conceda apenas as permissões necessárias.
+
+### Defense in Depth
+
+Utilize múltiplas camadas de proteção.
+
+### Secure by Default
+
+Adote configurações seguras como padrão.
+
+### Fail Securely
+
+Falhas não devem conceder acesso indevido.
+
+### Zero Trust
+
+Não confie automaticamente em usuários, dispositivos ou redes apenas por sua localização.
+
+Verifique identidade, contexto e autorização continuamente conforme o risco.
+
+## 13. Resposta a incidentes
+
+Etapas comuns:
+
+1. Preparação.
+2. Identificação.
+3. Contenção.
+4. Erradicação.
+5. Recuperação.
+6. Lições aprendidas.
+
+Registre evidências e preserve informações relevantes.
+
+Evite alterações desnecessárias em sistemas comprometidos antes da coleta adequada de evidências.
+
+## 14. Diretrizes para o agente
+
+Ao analisar problemas de segurança:
 
 1. Identifique os ativos envolvidos.
-2. Determine quais propriedades de segurança podem ser afetadas.
-3. Diferencie ameaça, vulnerabilidade e risco.
-4. Identifique os controles existentes.
-5. Avalie impacto e probabilidade.
-6. Justifique a classificação.
-7. Recomende medidas proporcionais ao risco.
+2. Compreenda o contexto.
+3. Identifique ameaças.
+4. Identifique vulnerabilidades.
+5. Avalie probabilidade.
+6. Avalie impacto.
+7. Determine severidade.
+8. Identifique controles existentes.
+9. Recomende correções.
+10. Sugira validação.
+11. Explique riscos residuais.
 
-Não confunda vulnerabilidade com incidente de segurança.
+Não confunda vulnerabilidade, ameaça, impacto e risco.
 
-Não presuma que toda falha representa uma exploração confirmada.
+Diferencie fatos comprovados de hipóteses.
 
-Diferencie claramente fatos observados, hipóteses e possibilidades.
+Nunca execute testes em sistemas de terceiros sem autorização explícita.
+
+## 15. Referências
+
+- OWASP: https://owasp.org/
+- NIST Cybersecurity Framework: https://www.nist.gov/cyberframework
+- NIST CSF 2.0: https://www.nist.gov/cyberframework
+- MITRE ATT&CK: https://attack.mitre.org/
+- CWE: https://cwe.mitre.org/
+- CVE: https://www.cve.org/
+- CVSS: https://www.first.org/cvss/
+- CIS Controls: https://www.cisecurity.org/controls
+
